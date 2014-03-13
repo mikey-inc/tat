@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+  <head>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="http://code.angularjs.org/1.0.1/angular-1.0.1.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="controllers.js"></script>
+    <script type="text/javascript" src="controllers2.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="stylOO.css" />
+    <title>Mike Wright Carriages</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="contacts-panel" ng-controller="ContactCtrl">
+        <h2>Mike Wright carriages (We move your things Faster)                    <a class="btn btn-primary" ng-href="#/edit/">Apply Loads</a>
+        </h2>
+        <div ng-view=""></div>
+      </div>
+    </div>
+  </body>
+
+</html>

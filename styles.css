@@ -1,0 +1,25 @@
+#contacts-panel {
+    margin-top: 14px;
+}
+
+#contacts-panel > h2 {
+    margin-bottom : 10px;
+}
+
+#contacts-panel .form-inline {
+    margin-bottom : 20px;
+}
+
+header {
+    margin-top: 14px;
+}
+
+.row > span:first-of-type{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.row > div {
+    margin-right:5px;
+    display:inline-block;
+}
