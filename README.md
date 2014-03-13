@@ -1,4 +1,4 @@
-Truck-Around-Town
+Trucking-Around-Town
 =================
 
 AngularJS Web App
