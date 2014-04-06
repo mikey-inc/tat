@@ -1,0 +1,12 @@
+<a ng-href="#/list/">Back to Home</a>
+
+<ul class="unstyled">
+  <li class="well span6" ng-show="(contactId, contact) in contacts">
+      <contact-widget contact="contact"></contact-widget>
+    <a href="#/list/{{contact.name}}"></a>
+
+        <p>{{contact.snippet}}</p>
+
+      </li>
+
+    </ul>

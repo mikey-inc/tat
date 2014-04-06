@@ -1,0 +1,51 @@
+<form name="editForm" class="form-horizontal" ng-submit="saveContact()">
+  <div class="control-group" ng-class="{error: editForm.name.$invalid}">
+    <label class="control-label"></label>
+    <div class="controls">
+      <input type="text" name="text" ng-model="name" placeholder="Name" required>
+      <p class="help-inline" ng-show="editForm.name.$error.required"></p>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+      <input type="text" name="description" placeholder="Description" ng-model="description">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+      <input type="text" name="adresse" placeholder="Pickup  Location" ng-model="pickuplocation">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+      <input type="text" name="adresse" placeholder="Dropoff  Location" ng-model="dropofflocation">
+    </div>
+  </div>
+
+ <div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+      <input type="time" name="time" placeholder="Time" ng-model="time">
+    </div>
+  </div>
+
+ <div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+      <input type="date" name="date" placeholder="Date" ng-model="date">
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <a class="btn" ng-href="#/list">Back</a>
+    <input type="submit" class="btn btn-success" ng-click="saveContact()" ng-disabled="editForm.$invalid" value="Save Order" />
+  </div>
+</form>
