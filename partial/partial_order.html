@@ -1,0 +1,23 @@
+<form name="orderForm" class="form-horizontal">
+    <div class="control-group" ng-class="{error: orderForm.name.$invalid}">
+        <label class="control-label"></label>
+        <div class="controls">
+            <input type="text" name="text" id="bid_name" ng-model="bidderName" placeholder="Name" required>
+            <p class="help-inline" ng-show="orderForm.name.$error.required"></p>
+        </div>
+    </div>
+    
+   </div>
+
+    <div class="control-group">
+        <label class="control-label"></label>
+        <div class="controls">
+            <input type="number" name="amount" id="bid_amt" ng-model="bidAmount" placeholder="Amount">
+        </div>
+    </div>
+
+     <div class="form-actions">
+        <a class="btn" ng-href="#/list">Back</a>
+        <input type="submit" class="btn btn-success" ng-click="saveOrder(contactId)" ng-disabled="orderForm.$invalid" value="Save Quotes"/>
+    </div>
+</form>

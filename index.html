@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp" class="htmlStyle" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+  <script src="lib/angular/angular.js"></script> -->
+
+  <script ng:autobind src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.2.5/firebase-simple-login.js'></script>
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+    <!--  <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://code.angularjs.org/1.2.0-rc.3/angular.js"></script> -->
+    <script data-require="ng-table@*" data-semver="0.3.0" src="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.js"></script>
+    
+    <link data-require="ng-table@*" data-semver="0.3.0" rel="stylesheet" href="http://bazalt-cms.com/assets/ng-table/0.3.0/ng-table.css" />
+    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+
+
+  <script src="lib/angular/angular-route.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/controller.js"></script>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>Mike Wright Carriges</title>
+</head>
+
+<body>
+  <div class="container">
+    <div id="contacts-panel" ng-controller="ContactCtrl">
+      <h2 style="color: white;">TruckDat to your Home!
+      	<a class="btn btn-success" ng-href="#/save_new/" >Apply For Delivery</a>
+        </h2>
+      <div ng-view=""></div>
+    </div>
+  </div>
+</body>
+
+</html>
