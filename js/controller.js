@@ -30,34 +30,56 @@ app.controller("ContactSaveCtrl", function ContactEditCtrl($scope, $location) {
 app.controller("ContactEditCtrl", function ContactEditCtrl($scope, $routeParams, $location) {
   
   var newContact = false;
+
   if ($routeParams.contactId) {
+    $scope.contact = $scope.contacts[$routeParams.contactId];
     console.log("inside existing contact, ContactId : "+$routeParams.contactId);
     console.log("clicked contact details : "+$scope.contacts[$routeParams.contactId]);
+    
     var res = JSON.stringify($scope.contacts[$routeParams.contactId]);
     console.log("values : "+res);
     var obj = JSON.parse(res);
     console.log("contact name : "+obj.name);
-    $scope.contacts = $scope.contacts[$routeParams.contactId];
+    //$scope.contacts = $scope.contacts[$routeParams.contactId];
+
+    var updateContactRef = new Firebase("https://freightload1.firebaseio.com/"+curr_contactID+"/");
   }
 
   else {
     $scope.contact = {};
     newContact = true;
   }
-  
-  $scope.saveContact = function() {
-    if (newContact) {
 
-      console.log("inside save contact");
+  var onComplete = function(error) {
+        if (error) alert('Synchronization failed.');
+        else alert('Synchronization succeeded.');
+      };
+
+  $scope.updateContact = function() {
+
+      console.log("inside update contact");
+      console.log("Scope : "+$scope);
+      
+      var re = JSON.stringify($scope.contacts);
+      console.log("values : "+re);
+      var obj = JSON.parse(re);
+      console.log("Updated contact name : "+re.name);
+
+      console.log("scope name : "+$scope.name);
+      console.log("scope description : "+$scope.description);
+      console.log("scope pickuplocation : "+$scope.pickuplocation);
+      console.log("scope dropofflocation : "+$scope.dropofflocation);
+      console.log("scope time : "+$scope.time);
+      console.log("scope date : "+$scope.date);
+
       var res = JSON.stringify($scope.contacts);
       console.log("values : "+res);
       var obj = JSON.parse(res);
       console.log("contact name : "+obj.name);
-      //$scope.contacts
-      //$scope.contacts.$add({name: $scope.name, description: $scope.description, pickuplocation: $scope.pickuplocation, dropofflocation: $scope.dropofflocation, time: $scope.time, date: $scope.date});
-      myDataRef.push({
-        name: obj.name//, description: $scope.description, pickuplocation: $scope.pickuplocation, dropofflocation: $scope.dropofflocation, time: $scope.time, date: $scope.date
-      });
+      
+      updateContactRef.update({
+        name: $scope.name, description: $scope.description, pickuplocation: $scope.pickuplocation, dropofflocation: $scope.dropofflocation, time: $scope.time, date: $scope.date
+      }, onComplete);
 
       $scope.name = "";
       $scope.description = "";
@@ -66,7 +88,6 @@ app.controller("ContactEditCtrl", function ContactEditCtrl($scope, $routeParams,
       $scope.time = "";
       $scope.date = "";
 
-    }
     console.log("rendering path : list/details");
     $location.path("/list");
   };
@@ -78,6 +99,40 @@ app.controller("ContactDetailsCtrl", function ContactDetailsCtrl($scope,  $route
 if ($routeParams.contactId) {
     console.log("ContactDetailsCtrl---inside existing contact if loop : "+$routeParams.contactId);
     $scope.contact = $scope.contacts[$routeParams.contactId];
+
+
+    //Bid List onto the details page.
+    curr_contactID = $routeParams.contactId;
+
+    $scope.bids = [];
+    var bidListIdsArr = [];
+    var bidListNameArr = [];
+    var bidListAmountArr = [];
+
+  //Query to get all children under clicked contact id
+  var quotesRef = new Firebase("https://freightload1.firebaseio.com/"+curr_contactID+"/bidList/");
+  
+  quotesRef.on('child_added', function(snapshot){
+    var id = snapshot.name();
+    var dataObj = snapshot.val();
+    bidListIdsArr.push(id);
+    bidListNameArr.push(dataObj.name);
+    bidListAmountArr.push(dataObj.amount);
+  });
+
+  var data = [];  
+
+   for(var i=0; i<bidListNameArr.length; i++){
+    console.log("Id @ "+i+" "+bidListIdsArr[i]);
+    console.log("Name @ "+i+" "+bidListNameArr[i]);
+    console.log("Amount @ "+i+" "+bidListAmountArr[i]);
+
+    $scope.bids.push({ 
+        "name" : bidListNameArr[i],
+        "amount"  : bidListAmountArr[i]
+    });
+   }
+
   }
 
 });
@@ -174,4 +229,24 @@ app.controller("DemoCtrl", function DemoCtrl($scope, $routeParams){
             {name: "Nephi", age: 29},
             {name: "Enos", age: 34}
         ];     
+});
+
+app.controller("CreateUserCtrl", function CreateUserCtrl($scope){
+
+  console.log("inside Create User Controller..");
+
+  $scope.createUser = function() {
+    var email = $scope.signup.email;
+    var password = $scope.signup.password;
+
+    console.log("Email : "+email);
+    console.log("Password : "+password);
+
+    auth.createUser(email, password, function(error, user) {
+      if (!error) {
+        console.log('User Id: ' + user.uid + ', Email: ' + user.email);
+      }
+    });
+  }
+
 });

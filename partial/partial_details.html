@@ -1,12 +1,19 @@
-<a ng-href="#/list/">Back to Home</a>
+<!-- <a ng-href="#/list/">Back to Home</a> -->
 
 <ul class="unstyled">
   <li class="well span6" ng-show="(contactId, contact) in contacts">
       <contact-widget contact="contact"></contact-widget>
-    <a href="#/list/{{contact.name}}"></a>
+      <a href="#/list/{{contact.name}}"></a>
+	  <p>{{contact.snippet}}</p>
+ </li>
+ </ul>
 
-        <p>{{contact.snippet}}</p>
+ <br>
 
-      </li>
-
-    </ul>
+ <table ng-table class="table table-striped">
+    <tr ng-repeat="bid in bids">
+        <td data-title="'Name'">{{bid.name}}</td>
+        <td data-title="'Bid Amount'">{{bid.amount}}</td>
+        <td data-title="'Select'"><input type="checkbox" name="" value=""></td>
+    </tr>
+</table>

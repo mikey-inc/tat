@@ -1,0 +1,7 @@
+<form ua-signup ua-error="error-msg" ng-submit="createUser()">
+  <input name="first_name" placeholder="Your name" ng-model="signup.firstName"><br>
+  <input name="login" ua-is-email placeholder="Email" ng-model="signup.email"><br>
+  <input name="password" placeholder="Password" type="password" ng-model="signup.password"><br>
+  <button type="submit">Create account</button>
+  <p id="error-msg"></p>
+</form>
