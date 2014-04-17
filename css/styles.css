@@ -1,23 +1,21 @@
 body {
-	font-family:  'Nova Mono', cursive;
+	font-family: Arial, Helvetica, sans-serif;
   color:black;
   font-size:15px;
     
-    background-image: url(http://subtlepatterns.com/patterns/tweed.png);
+    background-image:url(../bg.png);
 }
 
 form {
  	background:#111; 
-  width:450px;
-  margin:100px auto;
+  width:507px;
+  margin:10px -4px auto;
   border-radius:0.4em;
   border:1px solid #191919;
   overflow:hidden;
   position:relative;
-  box-shadow: 0 15px 5px 15px rgba(0,0,0,0.2);
-}
-.ng-table {
-    border: 1px solid #000;
+  /*box-shadow: 0 15px 5px 15px rgba(0,0,0,0.2);*/
+   padding-top:23px;
 }
 
 /*input[type=text],
@@ -37,6 +35,23 @@ input[type=date]{
   margin-right:260px;
    margin-top:5px;
 }*/
+
+p,h1,h2,h4,h5,h6{margin:0px;padding:0px;width:auto;font-weight:normal;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:500;line-height:25px;}
+
+h3{margin:0px;padding:0px;width:auto;font-weight:normal;font-family:Arial, Helvetica, sans-serif;font-size:18px;font-weight:700;}
+
+span{color:#FFFFFF;font-family:'Nova Mono',cursive;font-size:23px;width:auto;height:auto;font-weight: bold;
+margin-left: 20px;}
+
+#wapper{width:100%;height:auto;float:left;}
+
+.main{width:auto;height:auto;margin:0 auto;}
+
+.main h1{color:#666666;font-family:Arial, Helvetica, sans-serif;font-size:12px;width:auto;font-weight:normal;}
+
+.text{width:100px;height:40px;}
+
+.header{width:100%;height:10px;background-color:#116bd8;}
 
 
 
