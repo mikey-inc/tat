@@ -1,10 +1,12 @@
+var auth = null;
+
 /* Default Controller */
 app.controller("ContactCtrl", function ContactCtrl($scope, $firebase, $location) {
 
   console.log("ContactCtrl--inside");
   $scope.contacts = $firebase(myDataRef);
-  $location.path("/list");
-
+  //$location.path("/list");
+  $location.path("/login");
 });
 
 app.controller("ContactListCtrl", function ContactListCtrl($scope) {
@@ -231,7 +233,7 @@ app.controller("DemoCtrl", function DemoCtrl($scope, $routeParams){
         ];     
 });
 
-app.controller("CreateUserCtrl", function CreateUserCtrl($scope){
+app.controller("CreateUserCtrl", function CreateUserCtrl($scope, $location){
 
   console.log("inside Create User Controller..");
 
@@ -242,11 +244,127 @@ app.controller("CreateUserCtrl", function CreateUserCtrl($scope){
     console.log("Email : "+email);
     console.log("Password : "+password);
 
-    auth.createUser(email, password, function(error, user) {
-      if (!error) {
-        console.log('User Id: ' + user.uid + ', Email: ' + user.email);
-      }
-    });
+    if(email=="" || password==""){
+
+      alert("Username/Password Cannot be Empty!");
+      console.log("empty");
+    }
+
+    else{
+     auth.createUser(email, password, function(error, user) {
+        if (!error) {
+          //console.log('User Id: ' + user.uid + ', Email: ' + user.email);
+          alert("Account Created Successfully, Please login to continue..");
+          $location.path("/login");
+          $scope.$apply();        
+        }
+
+        else{
+          alert("An error has occurred, details - "+error);
+        }
+
+      });
+    }
   }
 
+});
+
+app.controller("LoginCtrl", function LoginCtrl($scope, $location){
+
+  console.log("inside Login Controller..");
+
+  //auth callback function
+  auth = new FirebaseSimpleLogin(myDataRef, function AuthCallback(error, user){
+
+      console.log("inside scope auth");
+          
+       if (error) {
+        // an error occurred while attempting login
+          alert(error);
+          console.log(JSON.stringify(error));
+       } 
+       else if(user){ 
+       // user authenticated with Firebase
+      console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+
+      $("#btn_delivery").removeClass("ng-hide");
+      $("#btn_delivery").addClass("ng-show");
+       
+      $("#btn_home").removeClass("ng-hide");
+      $("#btn_home").addClass("ng-show");
+
+      $("#btn_logout").removeClass("ng-hide");
+      $("#btn_logout").addClass("ng-show");
+
+      $("#btn_login").removeClass("ng-show");
+      $("#btn_login").addClass("ng-hide");
+
+      $("#btn_signup").removeClass("ng-show");
+      $("#btn_signup").addClass("ng-hide");
+
+      $location.path("/list");
+      $scope.$apply();     
+
+      } 
+      else {
+            console.log("You are logged out");  // user is logged out
+      }
+
+  });
+
+
+  $scope.authenticate = function() {
+    var email = $scope.login.email;
+    var password = $scope.login.password;
+    var rememberme = $scope.login.rememberMe;
+
+    if(email=="" || password==""){
+      alert("Username/Password Cannot be Empty!");
+      console.log("empty");
+    }
+    else{
+      //console.log("Email : "+email);
+      //console.log("Password : "+password);
+      //console.log("Remember Me : "+rememberme);
+
+      if(rememberme==true){
+        auth.login('password', {
+          email: email,
+          password: password,
+          rememberMe: true
+        });
+      }
+      else{
+        //login for normal provider
+        auth.login('password', {
+          email: email,
+          password: password
+        });
+      }
+    }
+  }
+
+});
+
+app.controller("LogoutCtrl", function LogoutCtrl($scope, $location){
+
+  console.log("Logging out..");
+  auth.logout();
+
+  $("#btn_delivery").removeClass("ng-show");
+  $("#btn_delivery").addClass("ng-hide");
+       
+  $("#btn_home").removeClass("ng-show");
+  $("#btn_home").addClass("ng-hide");
+
+  $("#btn_logout").removeClass("ng-show");
+  $("#btn_logout").addClass("ng-hide");
+
+  $("#btn_login").removeClass("ng-hide");
+  $("#btn_login").addClass("ng-show");
+
+  $("#btn_signup").removeClass("ng-hide");
+  $("#btn_signup").addClass("ng-show");
+
+  $location.path("/login");
 });

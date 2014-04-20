@@ -8,10 +8,6 @@ var app = angular.module('myApp', [
 var myDataRef = new Firebase('https://freightload1.firebaseio.com/');
 //var myQuotesRef = new Firebase('https://qoutes.firebaseio.com/');
 
-var auth = new FirebaseSimpleLogin(myDataRef, function(error, user){
-
-});
-
 /* GLOBAL VARIABLES */
 var curr_contactID = '';
 
@@ -72,6 +68,16 @@ app.config(['$routeProvider',
       templateUrl: 'partial/partial_login.html',
       controller: "LoginCtrl"
     });
+
+    $routeProvider.when('/logout/', {
+      templateUrl: 'partial/partial_login.html',
+      controller: "LogoutCtrl"
+    });
+
+    /*$routeProvider.when('/forgot/', {
+      templateUrl: 'partial/partial_login.html',
+      controller: "LoginCtrl"
+    });*/
 
     $routeProvider.otherwise({
       redirectTo: '/list'
