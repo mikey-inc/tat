@@ -282,6 +282,10 @@ app.controller("LoginCtrl", function LoginCtrl($scope, $location){
         // an error occurred while attempting login
           alert(error);
           console.log(JSON.stringify(error));
+
+          $("#login_email").val('');
+          $("#login_password").val('');
+          $("#login_remember").val('');
        } 
        else if(user){ 
        // user authenticated with Firebase
@@ -292,6 +296,9 @@ app.controller("LoginCtrl", function LoginCtrl($scope, $location){
        
       $("#btn_home").removeClass("ng-hide");
       $("#btn_home").addClass("ng-show");
+
+      $("#btn_changePassword").removeClass("ng-hide");
+      $("#btn_changePassword").addClass("ng-show");
 
       $("#btn_logout").removeClass("ng-hide");
       $("#btn_logout").addClass("ng-show");
@@ -366,5 +373,67 @@ app.controller("LogoutCtrl", function LogoutCtrl($scope, $location){
   $("#btn_signup").removeClass("ng-hide");
   $("#btn_signup").addClass("ng-show");
 
+  $("#btn_changePassword").removeClass("ng-show");
+  $("#btn_changePassword").addClass("ng-hide");
+
   $location.path("/login");
+});
+
+
+app.controller("ForgotCtrl", function ForgotCtrl($scope, $location){
+
+  console.log("Forgot Password..");
+
+  $scope.forgotPasswordSubmit = function() {
+
+    var email = $scope.forgot.email;
+    auth.sendPasswordResetEmail(email, function(error, success) {
+      if (!error) {
+        console.log('Password reset email sent successfully');
+        alert('Password reset email sent successfully, please follow the instructions..');
+        $location.path("/login");
+        $scope.$apply(); 
+      }
+      else{
+        alert(error);
+        $("#forgot_email").val('');
+      }
+    });
+  }
+});
+
+
+app.controller("ChangePasswordCtrl", function ChangePasswordCtrl($scope, $location){
+
+  console.log("Change Password..");
+
+  $scope.changePasswordSubmit = function() {
+
+    var email = $scope.change.email;
+    var oldPassword = $scope.change.currentPassword;
+    var newPassword = $scope.change.newPassword;
+    var re_newPassword = $scope.change.re_newPassword;
+
+    if(!(newPassword==re_newPassword)){
+
+      alert("New Password and Re-typed New Password are not same!");
+    }
+    else{
+      auth.changePassword(email, oldPassword, newPassword, function(error, success) {
+        if (!error) {
+          console.log('Password changed successfully');
+          alert('Password changed successfully, Please login with your new password!');
+          $location.path("/logout");     
+          $scope.$apply(); 
+        }
+        else{
+          alert(error);
+          $("#change_email").val('');
+          $("#current_password").val('');
+          $("#new_password").val('');
+          $("#re_new_password").val('');
+        }
+     });
+    }
+  }
 });

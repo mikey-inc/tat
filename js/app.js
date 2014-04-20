@@ -74,10 +74,15 @@ app.config(['$routeProvider',
       controller: "LogoutCtrl"
     });
 
-    /*$routeProvider.when('/forgot/', {
-      templateUrl: 'partial/partial_login.html',
-      controller: "LoginCtrl"
-    });*/
+    $routeProvider.when('/forgot/', {
+      templateUrl: 'partial/partial_forgotPassword.html',
+      controller: "ForgotCtrl"
+    });
+
+    $routeProvider.when('/changePassword/', {
+      templateUrl: 'partial/partial_changePassword.html',
+      controller: "ChangePasswordCtrl"
+    });
 
     $routeProvider.otherwise({
       redirectTo: '/list'
