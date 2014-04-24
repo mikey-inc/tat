@@ -29,13 +29,16 @@
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
   <title>TruckDat</title>
 </head>
 
 <body>
+<div class="header"></div>
+
   <div class="container">
     <div id="contacts-panel" ng-controller="ContactCtrl">
-      <h2 style="color: white;">TruckDat to your Home!
+      <h2 style="color:#de0a0a">TruckDat to your Home!
       	<a id="btn_delivery" class="btn btn-success ng-hide" ng-href="#/save_new/">Apply For Delivery</a>
         <a id="btn_home" class="btn btn ng-hide" ng-href="#/list/">Home</a>
         <a id="btn_changePassword" class="btn btn ng-hide" ng-href="#/changePassword/">Change Password</a>
@@ -43,7 +46,7 @@
         <a id="btn_login" class="btn btn-success" ng-href="#/login/">Login</a>   
         <a id="btn_signup" class="btn btn-primary" ng-href="#/signup/">SignUp</a>
         </h2>
-      <div ng-view=""></div>
+      <div style="background-color:#CC6633;padding-bottom:5px;padding-top:5px;border-radius:3px;margin-top:-5px;" ng-view=""></div>
     </div>
   </div>
 </body>
