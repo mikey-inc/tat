@@ -17,7 +17,7 @@ form {
   overflow:hidden;
   position:relative;
   /*box-shadow: 0 15px 5px 15px rgba(0,0,0,0.2);*/
-  color:#fff;
+  color:#fff;padding-bottom:13px;padding-top:10px;
 }
 .ng-table {
   border: 1px solid #000;
