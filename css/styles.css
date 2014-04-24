@@ -1,20 +1,22 @@
 body {
-	font-family:  'Nova Mono', cursive;
+	font-family: 'Montserrat', 'sans-serif';
   color:black;
   font-size:15px;
     
     background-image: url(http://subtlepatterns.com/patterns/tweed.png);
 }
 
+.a:hover{color:#FF3300;text-decoration:none;}
+
 form {
  	background:#111111; 
   width:450px;
-  margin:100px auto;
+  margin:6px auto;
   border-radius:0.4em;
   border:1px solid #191919;
   overflow:hidden;
   position:relative;
-  box-shadow: 0 15px 5px 15px rgba(0,0,0,0.2);
+  /*box-shadow: 0 15px 5px 15px rgba(0,0,0,0.2);*/
   color:#fff;
 }
 .ng-table {
@@ -43,7 +45,9 @@ input[type=date]{
    margin-top:5px;
 }*/
 
+.header{width:100%;height:10px;float:left;background-color:#FFFFFF;}
 
+.header_txt{width:100%;height:50px;float:left;background-color:#CCCCCC;}
 
 
 
