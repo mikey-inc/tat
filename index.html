@@ -36,28 +36,30 @@
 </head>
 
 <body>
+
 <div class="header"></div>
 
 <div class="header_a"></div>
 
   <div class="container">
-    <div id="contacts-panel" ng-controller="ContactCtrl">
-      <h2 style="color:#de0a0a">TruckDat to your Home!
-      	<a id="btn_delivery" class="btn btn-success ng-hide" ng-href="#/save_new/">Apply For Delivery</a>
-        <a id="btn_home" class="btn btn ng-hide" ng-href="#/list/">Home</a>
-        <a id="btn_changePassword" class="btn btn ng-hide" ng-href="#/changePassword/">Change Password</a>
-        <a id="btn_logout" class="btn btn-success ng-hide" ng-href="#/logout/">Logout</a> 
-        <a id="btn_login" class="btn btn-success" ng-href="#/login/">Login</a>   
-        <a id="btn_signup" class="btn btn-primary" ng-href="#/signup/">SignUp</a>
+   <div id="contacts-panel" ng-controller="ContactCtrl">
+      <h2 style="color:#c30e09;">TruckDat to your Home!
+      	<a class="btn btn-success" ng-href="#/save_new/" >Apply For Delivery</a>
+        <a class="btn btn" ng-href="#/list/">Home</a>
+        <a class="btn btn-success" ng-href="#/login/">Login</a>   
+        <a class="btn btn-primary" ng-href="#/signup/">SignUp</a>
         </h2>
-
- <div class="header_a"></div>
+     
+   
+        <div class="header_a"></div>
         
         <div class="header"></div>
 
+
+
       <div style="background-color:#CC6633;padding-bottom:5px;padding-top:5px;border-radius:3px;margin-top:-5px;-webkit-box-shadow: 0px 2px 6px 8px  rgba(50, 50, 50, 0.75);
 -moz-box-shadow:    0px 2px 6px 8px  rgba(50, 50, 50, 0.75);
-box-shadow:         0px 2px 6px 8px  rgba(50, 50, 50, 0.75);" ng-view=""></div>
+box-shadow:         0px 2px 6px 8px  rgba(50, 50, 50, 0.75);height:auto;" ng-view=""></div>
     </div>
   </div>
 </body>
